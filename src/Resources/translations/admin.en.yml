@@ -1,0 +1,16 @@
+batch_operation:
+    tags:
+        label: Add tags
+        title: Tag selection
+        selection: Tags
+        apply: Apply tags
+        remove_and_apply: Remove and apply tags
+        success:
+            add: Tags hinzugefügt
+            replace: Tags ersetzt
+        error:
+            assets: keine Assets ausgewählt
+            tags: keine Tags ausgewählt
+    error:
+        selection:
+            asset: Please select asset(s) first

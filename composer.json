@@ -1,0 +1,29 @@
+{
+  "name": "studio1/batch-operation",
+  "type": "pimcore-bundle",
+  "description": "Add addtional asset batch operations for tagging and moving files",
+  "authors": [
+    {
+      "name": "Studio1 Kommunikation GmbH",
+      "email": "info@studio1.de",
+      "homepage": "https://www.studio1.de/",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Studio1\\BatchOperationBundle\\": "src/"
+    }
+  },
+  "extra": {
+    "pimcore": {
+      "bundles": [
+        "Studio1\\BatchOperationBundle\\BatchOperationBundle"
+      ]
+    }
+  },
+  "require": {
+    "pimcore/pimcore": "^10.0",
+    "php": "^8.0"
+  }
+}
