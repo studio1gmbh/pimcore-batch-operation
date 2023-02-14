@@ -24,7 +24,7 @@ class BatchOperationBundle extends AbstractPimcoreBundle
     public function getJsPaths()
     {
         return [
-            '/bundles/batchoperation/js/pimcore/assetTags.js',
+            '/bundles/batchoperation/js/pimcore/assetTag.js',
             '/bundles/batchoperation/js/pimcore/assetMove.js'
         ];
     }
