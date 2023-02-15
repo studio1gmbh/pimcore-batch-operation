@@ -11,6 +11,8 @@ batch_operation:
         error:
             assets: keine Assets ausgewählt
             tags: keine Tags ausgewählt
+    move:
+        apply: Move
     error:
         selection:
             asset: Please select asset(s) first
