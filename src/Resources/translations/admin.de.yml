@@ -8,11 +8,15 @@ batch_operation:
         success:
             add: Tags hinzugefügt
             replace: Tags ersetzt
-        error:
-            assets: keine Assets ausgewählt
-            tags: keine Tags ausgewählt
+        error: keine Tags ausgewählt
     move:
         apply: Verschieben
+        success: Asset(s) erfolgreich verschoben. Liste wird neu geladen.
+        error:
+            target: Kein Zielverzeichnis ausgewählt
+            asset: Fehler beim Verschieben von Asset(s)
+    success:
+        title: Ergebnis
     error:
-        selection:
-            asset: Bitte zuerst Asset(s) auswählen
+        selection: Bitte zuerst Asset(s) auswählen
+        assets: keine Assets ausgewählt

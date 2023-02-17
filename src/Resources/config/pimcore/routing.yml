@@ -1,4 +1,4 @@
 batch-operation-bundle:
     resource: "@BatchOperationBundle/Controller/"
     type: annotation
-    prefix: /batch-operation
+    prefix: /admin/batch-operation

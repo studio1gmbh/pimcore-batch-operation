@@ -8,11 +8,15 @@ batch_operation:
         success:
             add: Tags hinzugefügt
             replace: Tags ersetzt
-        error:
-            assets: keine Assets ausgewählt
-            tags: keine Tags ausgewählt
+        error: keine Tags ausgewählt
     move:
         apply: Move
+        success: Asset(s) successfully moved. List will be reloaded.
+        error:
+            target: No target folder selected
+            asset: Error on moving asset(s)
+    success:
+        title: Result
     error:
-        selection:
-            asset: Please select asset(s) first
+        selection: Please select asset(s) first
+        assets: keine Assets ausgewählt

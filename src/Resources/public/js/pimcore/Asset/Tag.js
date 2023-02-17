@@ -1,8 +1,8 @@
-pimcore.registerNS("pimcore.plugin.BatchOperation.Asset.Tags");
+pimcore.registerNS("pimcore.plugin.BatchOperation.Asset.Tag");
 
-pimcore.plugin.BatchOperation.Asset.Tags = Class.create(pimcore.plugin.admin, {
+pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
     getClassName: function () {
-        return "pimcore.plugin.BatchOperation.Asset.Tags";
+        return "pimcore.plugin.BatchOperation.Asset.Tag";
     },
 
     initialize: function () {
@@ -10,9 +10,8 @@ pimcore.plugin.BatchOperation.Asset.Tags = Class.create(pimcore.plugin.admin, {
     },
 
     pimcoreReady: function (params, broker) {
-        console.log('BatchOperation Tags ready!');
+        console.log('BatchOperation Asset Tags ready!');
     },
-
 
     getTagsTree: function () {
         if (!this.tagsTree) {
@@ -39,7 +38,7 @@ pimcore.plugin.BatchOperation.Asset.Tags = Class.create(pimcore.plugin.admin, {
             }]
         });
         Ext.Ajax.request({
-            url: '/batch-operation/list-tags',
+            url: '/admin/batch-operation/list-tags',
             success: function (result) {
                 data = Ext.decode(result.responseText);
                 tagStore.loadRawData(data);
@@ -102,7 +101,7 @@ pimcore.plugin.BatchOperation.Asset.Tags = Class.create(pimcore.plugin.admin, {
 
     applyTags: function (assetIds, tagIds, replace) {
         Ext.Ajax.request({
-            url: '/batch-operation/add-tags',
+            url: '/admin/batch-operation/add-tags',
             params: {
                 assetIds: assetIds,
                 tagIds: tagIds,
@@ -111,7 +110,7 @@ pimcore.plugin.BatchOperation.Asset.Tags = Class.create(pimcore.plugin.admin, {
             success: function (result) {
                 result = t(Ext.decode(result.responseText));
                 Ext.Msg.show({
-                    title: 'Info',
+                    title: t('batch_operation.success.title'),
                     message: result,
                     buttons: Ext.Msg.OK,
                     icon: Ext.Msg.INFO,
@@ -130,4 +129,4 @@ pimcore.plugin.BatchOperation.Asset.Tags = Class.create(pimcore.plugin.admin, {
     },
 });
 
-var BatchOperationBundlePlugin = new pimcore.plugin.BatchOperation.Asset.Tags();
+var BatchOperationBundlePlugin = new pimcore.plugin.BatchOperation.Asset.Tag();
