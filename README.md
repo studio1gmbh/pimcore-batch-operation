@@ -1,5 +1,7 @@
 # Studio1® Batch Operation Bundle
 
+> THIS PACKAGE NEEDS CHANGES IN PIMCORE-CORE FILES
+
 ## Description
 
 Extend Pimcore core functionality by adding buttons in asset list view 
