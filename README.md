@@ -1,4 +1,4 @@
-# Studio1® Cloudinary Bundle
+# Studio1® Batch Operation Bundle
 
 ## Description
 
