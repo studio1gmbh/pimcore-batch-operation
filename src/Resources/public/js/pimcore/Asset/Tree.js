@@ -1,8 +1,8 @@
-pimcore.registerNS('pimcore.plugin.BatchOperation.Asset.Tag');
+pimcore.registerNS("pimcore.plugin.BatchOperation.Asset.Tree");
 
-pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
+pimcore.plugin.BatchOperation.Asset.Tree = Class.create(pimcore.plugin.admin, {
     getClassName: function () {
-        return 'pimcore.plugin.BatchOperation.Asset.Tag';
+        return "pimcore.plugin.BatchOperation.Asset.Tree";
     },
 
     initialize: function () {
@@ -10,16 +10,16 @@ pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
     },
 
     pimcoreReady: function (params, broker) {
-        console.log('BatchOperation Asset Tags ready!');
+        console.log("Batch operation tree ready");
     },
 
     getLayout: function () {
 
         if (this.layout == null) {
 
-            var gridStore = Ext.create('Ext.data.Store', {
+            var gridStore = Ext.create("Ext.data.Store", {
                 data: [],
-                fields: ['id', 'path']
+                fields: ["id", "path"]
             });
 
             var tree = new pimcore.element.tag.tree();
@@ -43,7 +43,7 @@ pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
             this.grid = Ext.create('Ext.grid.Panel', {
                 title: t('your_selection'),
                 region: 'center',
-                height: 440,
+                height: 500,
                 trackMouseOver: true,
                 store: gridStore,
                 columnLines: true,
@@ -51,7 +51,7 @@ pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
                 columns: {
                     items: [
                         {
-                            text: t('name'),
+                            text: t("name"),
                             dataIndex: 'path',
                             sortable: true,
                             width: 400
@@ -62,7 +62,7 @@ pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
                             width: 40,
                             items: [{
                                 tooltip: t('delete'),
-                                icon: '/bundles/pimcoreadmin/img/flat-color-icons/delete.svg',
+                                icon: "/bundles/pimcoreadmin/img/flat-color-icons/delete.svg",
                                 handler: function (tree, grid, rowIndex) {
                                     var record = grid.getStore().getAt(rowIndex);
 
@@ -77,17 +77,32 @@ pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
                     ]
                 },
                 bbar: [
-                    '->',
+                    "->",
                     {
                         text: t('batch_operation.tags.apply'),
-                        iconCls: 'pimcore_icon_apply',
+                        iconCls: "pimcore_icon_apply",
                         handler: function () {
                             this.applyTags(0);
+                            // console.log(this.grid.getStore().getData());
+                            // var ids = [];
+                            // if (this.grid.getStore().getData().items.length > 0) {
+                            //     this.grid.getStore().getData().items.forEach(function(data) {
+                            //        ids.push(data.id);
+                            //     });
+                            //     console.log(ids.join(','));
+                            // }
+
+                            // var ids = [];
+                            // data = this.grid.getData();
+                            // for (var i = 0; i < data.length; i++) {
+                            //     ids.push(data.id);
+                            // }
+                            // console.log(ids.join(','));
                         }.bind(this)
                     },
                     {
                         text: t('batch_operation.tags.remove_and_apply'),
-                        iconCls: 'pimcore_icon_apply',
+                        iconCls: "pimcore_icon_apply",
                         handler: function () {
                             this.applyTags(1);
                         }.bind(this)
@@ -95,25 +110,25 @@ pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
                 ]
             });
 
-            var treePanel = Ext.create('Ext.Panel', {
+            var treePanel = Ext.create("Ext.Panel", {
                 items: [tree.getLayout()],
-                layout: 'border',
+                layout: "border",
                 width: 380,
-                height: 440,
+                height: 500,
                 region: 'west',
             });
 
-            this.layout = Ext.create('Ext.Panel', {
+            this.layout = Ext.create("Ext.Panel", {
                 tabConfig: {
                     tooltip: t('tags')
                 },
                 layout: 'border',
                 items: [this.grid, treePanel],
-                width: 880,
-                height: 450,
+                width: 860,
+                height: 520,
                 defaults: {
-                    split: true,
-                    frame: true,
+                    split: false,
+                    bodyPadding: 10
                 },
             });
         }
@@ -130,6 +145,7 @@ pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
             ids.push(data.id);
         });
         tagIds = ids.join(',');
+        console.log('Tag Ids: ' + tagIds);
         Ext.Ajax.request({
             url: '/admin/batch-operation/add-tags',
             params: {
@@ -147,7 +163,6 @@ pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
                     fn: function (msgUpload) {
                         if (msgUpload === 'ok') {
                             console.log(result);
-                            this.win.close();
                         }
                     }
                 });
@@ -162,10 +177,10 @@ pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
     buildPopupWindow: function (assetIds) {
         this.assetIds = assetIds;
         this.win = Ext.create('Ext.window.Window', {
-            title: t('batch_operation.tags.title'),
+            title: t('test'),
             autoScroll: true,
             width: 900,
-            height: 500,
+            height: 540,
             y: 120,
             modal: true,
             closeAction: 'hide'
@@ -173,6 +188,7 @@ pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
         this.win.add(this.getLayout());
         return this.win;
     },
+
 });
 
-var BatchOperationBundlePlugin = new pimcore.plugin.BatchOperation.Asset.Tag();
+var tree = new pimcore.plugin.BatchOperation.Asset.Tree();

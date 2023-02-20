@@ -1,0 +1,80 @@
+Index: pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js b/pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js
+--- a/pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js	
++++ b/pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js	(date 1676896687728)
+@@ -250,6 +250,53 @@
+             }.bind(this)
+         });
+ 
++        // region Studio1\BatchOperationBundle
++        this.tagButton = Ext.create('Ext.button.Button', {
++            iconCls: 'pimcore_icon_element_tags',
++            text: t('batch_operation.tags.label'),
++            handler: function () {                
++                var ids = [];
++                var selectedRows = this.grid.getSelectionModel().getSelection();
++                for (var i = 0; i < selectedRows.length; i++) {
++                    ids.push(selectedRows[i].data.id);
++                }
++                if (ids.length) {
++                    batchOperation = Ext.create("pimcore.plugin.BatchOperation.Asset.Tag");
++                    win = batchOperation.buildPopupWindow(ids.join(','));
++                    win.show();
++                } else {
++                    Ext.Msg.alert(t('error'), t('batch_operation.error.selection'));
++                }                
++            }.bind(this)
++        });
++        var user = pimcore.globalmanager.get("user");
++        if (!user.isAllowed("tags_search")) {
++            this.tagButton.disable();
++        }
++        this.moveButton = Ext.create('Ext.button.Button', {
++            iconCls: "pimcore_icon_search pimcore_icon_overlay_go",
++            text: t('search_and_move'),
++            handler: function () {
++                var ids = [];
++                var selectedRows = this.grid.getSelectionModel().getSelection();
++                for (var i = 0; i < selectedRows.length; i++) {
++                    ids.push(selectedRows[i].data.id);
++                }
++                if (ids.length) {
++                    batchOperation = Ext.create('pimcore.plugin.BatchOperation.Asset.Move');
++                    win = batchOperation.buildPopupWindow(ids.join(','));
++                    win.show();
++                    win.on("close", function () {
++                            this.store.load();
++                        }.bind(this)
++                    );
++                } else {
++                    Ext.Msg.alert(t('error'), t('batch_operation.error.selection'));
++                }
++            }.bind(this)
++        });
++        // endregion
++
+         this.grid = Ext.create('Ext.grid.Panel', {
+             overflowHandler: 'scroller',
+             frame: false,
+@@ -285,6 +332,8 @@
+                 "->",
+                 this.checkboxOnlyDirectChildren, "-",
+                 this.checkboxOnlyUnreferenced, "-",
++                this.tagButton, "-", // Studio1
++                this.moveButton, "-", // Studio1
+                 this.downloadSelectedZipButton, "-",
+                 this.exportButton, "-",
+                 this.columnConfigButton,
+@@ -368,7 +417,7 @@
+                     });
+                 } else if (key == "creationDate" || field.key == "modificationDate") {
+                     gridColumns.push({text: t(field.label), width: this.getColumnWidth(field, 150), sortable: true, dataIndex: field.key, editable: false, filter: 'date',
+-                       renderer: function(d) {
++                        renderer: function(d) {
+                             var date = new Date(d * 1000);
+                             return Ext.Date.format(date, "Y-m-d H:i:s");
+                         }

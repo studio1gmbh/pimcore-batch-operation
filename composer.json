@@ -20,6 +20,11 @@
       "bundles": [
         "Studio1\\BatchOperationBundle\\BatchOperationBundle"
       ]
+    },
+    "patches": {
+      "pimcore/pimcore": {
+        "Add": "patches/listfolder.patch"
+      }
     }
   },
   "require": {

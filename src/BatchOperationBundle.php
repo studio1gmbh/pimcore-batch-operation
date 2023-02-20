@@ -25,7 +25,7 @@ class BatchOperationBundle extends AbstractPimcoreBundle
     {
         return [
             '/bundles/batchoperation/js/pimcore/Asset/Tag.js',
-            '/bundles/batchoperation/js/pimcore/Asset/Move.js'
+            '/bundles/batchoperation/js/pimcore/Asset/Move.js',
         ];
     }
 }

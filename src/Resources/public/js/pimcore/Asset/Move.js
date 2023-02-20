@@ -81,16 +81,6 @@ pimcore.plugin.BatchOperation.Asset.Move = Class.create(pimcore.plugin.admin, {
         return this.formPanel;
     },
 
-    getGridLayout: function () {
-        gridPanel = Ext.create('Ext.panel.Panel', {
-            region: 'center',
-            title: 'Grid Panel',
-            html: 'Grid Panel content here',
-            layout: 'fit'
-        });
-        return gridPanel;
-    },
-
     getGridSelModel: function () {
         return Ext.create('Ext.selection.RowModel', "SINGLE");
     },
@@ -292,7 +282,7 @@ pimcore.plugin.BatchOperation.Asset.Move = Class.create(pimcore.plugin.admin, {
         this.pagingtoolbar.moveFirst();
     },
 
-    buildSearchWindow: function (assetIds) {
+    buildPopupWindow: function (assetIds) {
         this.assetIds = assetIds;
         this.win = Ext.create('Ext.window.Window', {
             title: t('asset_search'),

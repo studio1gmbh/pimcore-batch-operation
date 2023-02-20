@@ -6,9 +6,9 @@ batch_operation:
         apply: Apply tags
         remove_and_apply: Remove and apply tags
         success:
-            add: Tags hinzugefügt
-            replace: Tags ersetzt
-        error: keine Tags ausgewählt
+            add: Added tags
+            replace: Replaced tags
+        error: No tags selected
     move:
         apply: Move
         success: Asset(s) successfully moved. List will be reloaded.
