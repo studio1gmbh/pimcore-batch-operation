@@ -1,11 +1,11 @@
-Index: pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js
+Index: bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
-diff --git a/pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js b/pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js
---- a/pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js	
-+++ b/pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js	(date 1676896687728)
+diff --git a/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js b/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js
+--- a/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js
++++ b/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js	(date 1676896687728)
 @@ -250,6 +250,53 @@
              }.bind(this)
          });
