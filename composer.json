@@ -25,11 +25,12 @@
     },
     "patches": {
       "pimcore/pimcore": {
-        "Add": "patches/listfolder.patch"
+        "Add buttons to grid view": "vendor/studio1/batch-operation/patches/listfolder.patch"
       }
     }
   },
   "require": {
+    "cweagons/composer-patches": "1.7.2",
     "pimcore/pimcore": "^10.0",
     "php": "^8.0"
   }
