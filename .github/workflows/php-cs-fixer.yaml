@@ -9,7 +9,7 @@ permissions:
 jobs:
     php-cs-fixer:
         permissions:
-            contents: write  # for stefanzweifel/git-auto-commit-action to push code in repo
+            contents: write  # for stefanzweifel/git-auto-commit-action to push code in repos
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
