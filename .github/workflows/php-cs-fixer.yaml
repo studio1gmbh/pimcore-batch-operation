@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
     php-cs-fixer:
-        runs-on: self-hosted
+        runs-on: jne-private-host
         steps:
             - uses: actions/checkout@v2
               with:
