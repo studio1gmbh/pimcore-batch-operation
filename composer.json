@@ -25,7 +25,7 @@
     },
     "patches": {
       "pimcore/pimcore": {
-        "Add": "patches/listfolder.patch"
+        "Add buttons to grid view": "vendor/studio1/batch-operation/patches/listfolder.patch"
       }
     }
   },
