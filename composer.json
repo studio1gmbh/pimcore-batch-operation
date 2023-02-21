@@ -2,6 +2,7 @@
   "name": "studio1/batch-operation",
   "type": "pimcore-bundle",
   "description": "Add addtional asset batch operations for tagging and moving files",
+  "license": "GPL-3.0-or-later",
   "homepage": "https://github.com/studio1gmbh/pimcore-batch-operation",
   "authors": [
     {
