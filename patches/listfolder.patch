@@ -5,7 +5,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 ===================================================================
 diff --git a/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js b/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js
 --- a/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js
-+++ b/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js	(date 1676896687728)
++++ b/bundles/AdminBundle/Resources/public/js/pimcore/asset/listfolder.js
 @@ -250,6 +250,53 @@
              }.bind(this)
          });
