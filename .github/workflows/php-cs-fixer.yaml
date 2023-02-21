@@ -4,7 +4,7 @@ on: [push, workflow_dispatch]
 
 jobs:
     php-cs-fixer:
-        runs-on: jne-private-host
+        runs-on: self-hosted
         steps:
             - uses: actions/checkout@v2
               with:
