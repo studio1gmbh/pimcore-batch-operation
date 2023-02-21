@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Studio1 Kommunikation GmbH
+ *
+ * This source file is available under following license:
+ * - GNU General Public License v3.0 (GNU GPLv3)
+ *
+ *  @copyright  Copyright (c) Studio1 Kommunikation GmbH (http://www.studio1.de)
+ *  @license    https://www.gnu.org/licenses/gpl-3.0.txt
+ */
+
 namespace Studio1\BatchOperationBundle\Controller;
 
 use Exception;
@@ -8,13 +18,13 @@ use Pimcore\Model\Asset;
 use Pimcore\Model\Element\Tag;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AdminController
 {
     /**
      * @param Request $request
+     *
      * @return JsonResponse
      * @Route("/list-tags", name="plugin_batch_operation_tag_list")
      */
@@ -25,12 +35,15 @@ class DefaultController extends AdminController
         foreach ($tags as $tag) {
             $data[] = ['id' => $tag->getId(), 'path' => $tag->getNamePath()];
         }
+
         return new JsonResponse($data);
     }
 
     /**
      * Add or replace tags to assets
+     *
      * @param Request $request
+     *
      * @return JsonResponse
      * @Route("/add-tags",name="plugin_batch_operation_tag_add")
      */
@@ -47,12 +60,15 @@ class DefaultController extends AdminController
         }
         Tag::batchAssignTagsToElement('asset', explode(',', $assetIds), explode(',', $tagIds), $replace);
         $message = $replace ? 'batch_operation.tags.success.replace' : 'batch_operation.tags.success.add';
+
         return new JsonResponse($message);
     }
 
     /**
      * Move assets to selected target folder
+     *
      * @param Request $request
+     *
      * @return JsonResponse
      * @Route("/move",name="plugin_batch_operation_move")
      */
@@ -85,11 +101,13 @@ class DefaultController extends AdminController
         if (!empty($error)) {
             return new JsonResponse(['message' => 'batch_operation.move.error.asset', 'detail' => $error], 500);
         }
+
         return new JsonResponse('batch_operation.move.success');
     }
 
     /**
      * @param Request $request
+     *
      * @return JsonResponse
      * @Route("/test",name="plugin_batch_operation_test")
      */
@@ -103,6 +121,7 @@ class DefaultController extends AdminController
             $data = 'batch_operation.move.success';
             $responseCode = 200;
         }
+
         return new JsonResponse($data, $responseCode);
     }
 }
