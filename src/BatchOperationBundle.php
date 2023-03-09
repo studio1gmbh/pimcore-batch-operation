@@ -14,23 +14,38 @@ namespace Studio1\BatchOperationBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 
+/**
+ * Batch operation bundle
+ */
 class BatchOperationBundle extends AbstractPimcoreBundle
 {
+    /**
+     * @inheritDoc
+     */
     public function getVersion()
     {
-        return '1.0.0';
+        return '1.0.3';
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getNiceName()
     {
         return 'Batch operation';
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getDescription()
     {
         return 'Add addtional asset batch operations for tagging and moving files';
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getJsPaths()
     {
         return [
