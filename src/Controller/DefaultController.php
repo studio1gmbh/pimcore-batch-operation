@@ -6,8 +6,8 @@
  * This source file is available under following license:
  * - GNU General Public License v3.0 (GNU GPLv3)
  *
- *  @copyright  Copyright (c) Studio1 Kommunikation GmbH (http://www.studio1.de)
- *  @license    https://www.gnu.org/licenses/gpl-3.0.txt
+ * @copyright  Copyright (c) Studio1 Kommunikation GmbH (http://www.studio1.de)
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt
  */
 
 namespace Studio1\BatchOperationBundle\Controller;
@@ -50,15 +50,29 @@ class DefaultController extends AdminController
     public function addTagsAction(Request $request): JsonResponse
     {
         $replace = $request->get('replace');
-        $assetIds = urldecode($request->get('assetIds'));
-        $tagIds = urldecode($request->get('tagIds'));
+        $assetIds = urldecode($request->get('assetIds', ''));
+        $tagIds = urldecode($request->get('tagIds', ''));
         if (empty($assetIds)) {
             return new JsonResponse('batch_operation.error.asset', 500);
         }
         if (empty($tagIds)) {
             return new JsonResponse('batch_operation.tags.error', 500);
         }
-        Tag::batchAssignTagsToElement('asset', explode(',', $assetIds), explode(',', $tagIds), $replace);
+        $assetIds = explode(',', $assetIds);
+        $tagIds = explode(',', $tagIds);
+        foreach ($assetIds as $assetId) {
+            if ($replace) {
+                $assetTags = Tag::getTagsForElement('asset', $assetId);
+                foreach ($assetTags as $assetTag) {
+                    if (!in_array($assetTag->getId(), $tagIds)) {
+                        Tag::removeTagFromElement('asset', $assetId, $assetTag);
+                    }
+                }
+            }
+            foreach ($tagIds as $tagId) {
+                Tag::addTagToElement('asset', $assetId, Tag::getById($tagId));
+            }
+        }
         $message = $replace ? 'batch_operation.tags.success.replace' : 'batch_operation.tags.success.add';
 
         return new JsonResponse($message);
