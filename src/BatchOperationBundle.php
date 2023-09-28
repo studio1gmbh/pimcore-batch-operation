@@ -54,7 +54,7 @@ class BatchOperationBundle extends AbstractPimcoreBundle implements PimcoreBundl
      */
     public function getDescription(): string
     {
-        return 'Add addtional asset batch operations for tagging and moving files';
+        return 'Add additional asset batch operations for tagging and moving files';
     }
 
     /**
