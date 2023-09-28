@@ -12,6 +12,7 @@
 
 namespace Studio1\BatchOperationBundle;
 
+use Exception;
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\PimcoreBundleAdminClassicInterface;
 use Pimcore\Extension\Bundle\Traits\BundleAdminClassicTrait;
@@ -44,7 +45,7 @@ class BatchOperationBundle extends AbstractPimcoreBundle implements PimcoreBundl
     {
         try {
             return $this->getComposerVersion();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return 'unknown';
         }
     }
