@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Google Vision AI Bundle will be documented in this file.
+All notable changes to the Batch Operation Bundle will be documented in this file.
 
 | **Bundle Version** | **Pimcore Version** |
 |--------------------|---------------------|
