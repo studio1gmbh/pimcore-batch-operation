@@ -1,13 +1,14 @@
 // see pimcore/vendor/pimcore/pimcore/bundles/AdminBundle/Resources/public/js/pimcore/element/selector/asset.js
 pimcore.registerNS("pimcore.plugin.BatchOperation.Asset.Move");
 
-pimcore.plugin.BatchOperation.Asset.Move = Class.create(pimcore.plugin.admin, {
+pimcore.plugin.BatchOperation.Asset.Move = Class.create({
     getClassName: function () {
         return "pimcore.plugin.BatchOperation.Asset.Move";
     },
 
     initialize: function () {
-        pimcore.plugin.broker.registerPlugin(this);
+        document.addEventListener(pimcore.events.pimcoreReady, this.pimcoreReady.bind(this));
+        document.addEventListener(pimcore.menu.preBuild, this.getMainLayout.bind(this));
         this.initStore();
     },
 
@@ -22,7 +23,7 @@ pimcore.plugin.BatchOperation.Asset.Move = Class.create(pimcore.plugin.admin, {
             pageSize: 50,
             proxy: {
                 type: 'ajax',
-                url: Routing.generate('pimcore_admin_searchadmin_search_find'),
+                url: Routing.generate('pimcore_bundle_search_search_find'),
                 reader: {
                     type: 'json',
                     rootProperty: 'data'

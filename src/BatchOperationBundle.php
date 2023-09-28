@@ -13,32 +13,46 @@
 namespace Studio1\BatchOperationBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
+use Pimcore\Extension\Bundle\PimcoreBundleAdminClassicInterface;
+use Pimcore\Extension\Bundle\Traits\BundleAdminClassicTrait;
+use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 
 /**
  * Batch operation bundle
  */
-class BatchOperationBundle extends AbstractPimcoreBundle
+class BatchOperationBundle extends AbstractPimcoreBundle implements PimcoreBundleAdminClassicInterface
 {
+    use BundleAdminClassicTrait;
+    use PackageVersionTrait {
+        getVersion as protected getComposerVersion;
+    }
+
     /**
-     * @inheritDoc
+     * Returns the composer package name used to resolve the version
+     *
+     * @return string
      */
-    public function getVersion()
+    protected function getComposerPackageName(): string
     {
-        return '1.0.3';
+        return 'studio1/batch-operation';
+    }
+
+    /**
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        try {
+            return $this->getComposerVersion();
+        } catch (\Exception $e) {
+            return 'unknown';
+        }
     }
 
     /**
      * @inheritDoc
      */
-    public function getNiceName()
-    {
-        return 'Batch operation';
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Add addtional asset batch operations for tagging and moving files';
     }
@@ -46,7 +60,7 @@ class BatchOperationBundle extends AbstractPimcoreBundle
     /**
      * @inheritDoc
      */
-    public function getJsPaths()
+    public function getJsPaths(): array
     {
         return [
             '/bundles/batchoperation/js/pimcore/Asset/Tag.js',
