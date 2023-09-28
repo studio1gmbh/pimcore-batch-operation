@@ -13,14 +13,14 @@
 namespace Studio1\BatchOperationBundle\Controller;
 
 use Exception;
-use Pimcore\Bundle\AdminBundle\Controller\AdminController;
+use Pimcore\Controller\UserAwareController;
 use Pimcore\Model\Asset;
 use Pimcore\Model\Element\Tag;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController extends AdminController
+class DefaultController extends UserAwareController
 {
     /**
      * @param Request $request

@@ -1,7 +1,7 @@
 {
   "name": "studio1/batch-operation",
   "type": "pimcore-bundle",
-  "description": "Add addtional asset batch operations for tagging and moving files",
+  "description": "Add additional asset batch operations for tagging and moving files",
   "license": "GPL-3.0-or-later",
   "homepage": "https://github.com/studio1gmbh/pimcore-batch-operation",
   "authors": [
@@ -24,14 +24,15 @@
       ]
     },
     "patches": {
-      "pimcore/pimcore": {
+      "pimcore/admin-ui-classic-bundle": {
         "Add buttons to grid view": "vendor/studio1/batch-operation/patches/listfolder.patch"
       }
     }
   },
   "require": {
-    "cweagans/composer-patches": "1.7.2",
-    "pimcore/pimcore": "^10.0",
+    "cweagans/composer-patches": "1.7.3",
+    "pimcore/pimcore": "^11.0",
+    "pimcore/admin-ui-classic-bundle": "^1.0",
     "php": "^8.0"
   }
 }

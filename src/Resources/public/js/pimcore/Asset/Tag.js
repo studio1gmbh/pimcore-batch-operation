@@ -1,12 +1,12 @@
 pimcore.registerNS('pimcore.plugin.BatchOperation.Asset.Tag');
 
-pimcore.plugin.BatchOperation.Asset.Tag = Class.create(pimcore.plugin.admin, {
+pimcore.plugin.BatchOperation.Asset.Tag = Class.create({
     getClassName: function () {
         return 'pimcore.plugin.BatchOperation.Asset.Tag';
     },
 
     initialize: function () {
-        pimcore.plugin.broker.registerPlugin(this);
+        document.addEventListener(pimcore.events.pimcoreReady, this.pimcoreReady.bind(this));
     },
 
     pimcoreReady: function (params, broker) {
